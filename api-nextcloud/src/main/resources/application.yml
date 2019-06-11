@@ -1,0 +1,10 @@
+server:
+  context-path: /api-nextcloud/
+  port: 18090
+
+spring:
+  aop:
+    proxy-target-class: true
+    
+logging:
+  config: {root_api}/api-nextcloud/data/config/log4j2-api-nextcloud.xml

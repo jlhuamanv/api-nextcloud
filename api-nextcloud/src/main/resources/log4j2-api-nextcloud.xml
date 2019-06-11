@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" monitorInterval="30">
+    <Properties>
+        <Property name="LOG_PATTERN">
+            %d [%t] %-5p %c - %m%n
+        </Property>
+    </Properties>
+    <Appenders>
+        <Console name="ConsoleAppender" target="SYSTEM_OUT" follow="true">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+        </Console>
+        <RollingFile name="FileAppender" fileName="{root_api}/api-nextcloud/data/log/api-nextcloud.log" 
+                 filePattern="api-nextcloud-%d{yyyy-MM-dd}.log">
+            <PatternLayout pattern="${LOG_PATTERN}" />
+            <SizeBasedTriggeringPolicy size="10 MB" />
+            <DefaultRolloverStrategy max="10"/>
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+	<AsyncLogger name="pe.org.jhsystem.cloud.api.nextcloud" level="DEBUG"/>
+        <AsyncLogger name="org.springframework" level="ERROR"/>
+        <AsyncLogger name="springfox.documentation" level="ERROR"/>
+		<AsyncLogger name="org.apache" level="ERROR"/>
+		<AsyncLogger name="org.hibernate" level="ERROR"/>
+        <Root level="INFO">
+            <AppenderRef ref="FileAppender" />
+        </Root>
+    </Loggers>
+</Configuration>
